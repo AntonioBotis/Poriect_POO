@@ -4,10 +4,10 @@ public class Meniu_Admin
 {
     public int optiune_admin = 0;
 
-    private Piese pies1 = null;
+    public  Piese piesa = null;
+    public Cerere cerere = null;
 
-
-    Cerere cerere=new Cerere("a","b","c","d",Cerere.tip.in_preluare);
+    
 
 
     //asta a dat intelysensu
@@ -35,10 +35,10 @@ public class Meniu_Admin
                     Console.WriteLine("Se iese din admin");
 
                     break;
-                case 1: cerere.afisare_cerere(lista_cerere); break;
-                case 2: piesa.vizualizare_cerere_piese(lista_piesa); break;
-                case 3:  piesa.preluare_cerere_piese(lista_piesa);break;
-                case 4: cerere.creare_cerere(lista_cerere); break;
+                case 1: cerere.afisare_cerere(Logare.lista_cerere); break;
+                case 2: piesa.vizualizare_cerere_piese(Logare.lista_piesa); break;
+                case 3:  piesa.preluare_cerere_piese(Logare.lista_piesa);break;
+                case 4: cerere.creare_cerere(Logare.lista_cerere); break;
             }
 
         } while (optiune_admin != 0);

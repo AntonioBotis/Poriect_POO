@@ -2,7 +2,7 @@ namespace service_auto_v2;
 
 public class Cerere
 {
-    public string cod_identificare { get; set; }
+     public string cod_identificare { get; set; }
         public string client_nume { get; set; }
         public string client_nr_masina { get; set; }
         public string descriere { get; set; }
