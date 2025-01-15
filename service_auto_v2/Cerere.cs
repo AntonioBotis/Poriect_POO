@@ -1,4 +1,7 @@
 namespace service_auto_v2;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 public class Cerere
 {
@@ -34,7 +37,7 @@ public class Cerere
                      
         }
 
-
+       
         public void creare_cerere(List<Cerere> cerere)
         {
             contor_cerere = contor_cerere + 1;
@@ -56,11 +59,19 @@ public class Cerere
             Console.WriteLine("");
             
             Cerere cerere1=new Cerere(cod_identificare, client_nume, client_nr_masina, descriere, status);
+            
             cerere.Add(cerere1);
-
+            
+            salvare_cerere_in_fisier(cerere1);
+           
 
         }
-
+         private void salvare_cerere_in_fisier(Cerere cerere)
+         {
+             string path = "lista_cereri.txt";
+             string linie = $"{cerere.cod_identificare},{cerere.client_nume},{cerere.client_nr_masina},{cerere.descriere},{cerere.status}";
+             File.AppendAllText(path, linie + Environment.NewLine);
+         }
 
         public void afisare_cerere(List<Cerere> cerere)
         {
@@ -76,6 +87,51 @@ public class Cerere
 
                 Console.WriteLine("");
             
+        }
+        
+        public static List<Cerere> citire_cereri_din_fisier()
+        {
+            string path = "cereri.txt";
+            List<Cerere> cereri = new List<Cerere>();
+
+            if (File.Exists(path))
+            {
+                string[] lines = File.ReadAllLines(path);
+
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split(',');
+
+                    if (parts.Length == 5)
+                    {
+                        Cerere c = new Cerere(
+                            parts[0], // cod_identificare
+                            parts[1], // client_nume
+                            parts[2], // client_nr_masina
+                            parts[3], // descriere
+                            Enum.Parse<tip>(parts[4]) // status
+                        );
+
+                        cereri.Add(c);
+                    }
+                }
+            }
+
+            return cereri;
+        }
+        
+        static void CurataFisier(string filePath)
+        {
+            filePath="lista_cereri.txt";
+            if (File.Exists(filePath))
+            {
+                File.WriteAllText(filePath, ""); // Suprascrie cu un conținut gol
+                Console.WriteLine($"Fișierul {filePath} a fost golit.");
+            }
+            else
+            {
+                Console.WriteLine($"Fișierul {filePath} nu există.");
+            }
         }
 
         public void preluare_cerere(List<Cerere> cerere)

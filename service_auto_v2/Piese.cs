@@ -1,4 +1,7 @@
 namespace service_auto_v2;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 public class Piese
 {
@@ -56,9 +59,65 @@ public class Piese
         Piese piesa1 = new Piese(awb,Logare.temp_utilizator,status,pes1 ,pre1, cer1);
         p1.Add(piesa1);
         
+        salvare_piesa_in_fisier(piesa1);
         Console.WriteLine();
     }
+    
+    private void salvare_piesa_in_fisier(Piese piesa)
+    {
+        string path = "piese.txt";
+        string linie = $"{piesa.awb},{piesa.nume_piesa},{piesa.pret_piesa},{piesa.status}";
+        File.AppendAllText(path, linie + Environment.NewLine);
+    }
+    public static List<Piese> citire_piese_din_fisier()
+    {
+        string path = "piese.txt";
+        List<Piese> piese = new List<Piese>();
 
+        if (File.Exists(path))
+        {
+            string[] lines = File.ReadAllLines(path);
+
+            foreach (string line in lines)
+            {
+                string[] parts = line.Split(',');
+
+                if (parts.Length == 4)
+                {
+                    Piese p = new Piese(
+                        parts[0], // awb
+                        null,     // utilizatori (nu e salvat în fișier)
+                        Enum.Parse<tip>(parts[3]), // status
+                        parts[1], // nume_piesa
+                        int.Parse(parts[2]), // pret_piesa
+                        null      // cerere (nu e salvat în fișier)
+                    );
+
+                    piese.Add(p);
+                }
+            }
+        }
+
+        return piese;
+    }
+    
+    public void vizualizare_cerere_piese_din_fisier()
+    {
+        List<Piese> piese = citire_piese_din_fisier();
+
+        if (piese.Count == 0)
+        {
+            Console.WriteLine("Nu există cereri de piese salvate.");
+            return;
+        }
+
+        Console.WriteLine("Cereri de piese salvate:");
+        foreach (var piesa in piese)
+        {
+            Console.WriteLine($"{piesa.awb} {piesa.nume_piesa} {piesa.pret_piesa} {piesa.status}");
+        }
+    }
+    
     public void vizualizare_cerere_piese(List<Piese> lista_piese)
     {
 
