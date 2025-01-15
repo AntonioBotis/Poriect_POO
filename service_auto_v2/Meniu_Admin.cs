@@ -1,5 +1,7 @@
 namespace service_auto_v2;
-
+using System;
+using System.Collections.Generic;
+using System.IO;
 public class Meniu_Admin
 {
     public int optiune_admin = 0;

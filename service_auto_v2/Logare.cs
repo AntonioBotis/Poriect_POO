@@ -1,5 +1,10 @@
-namespace service_auto_v2;
+using System.Runtime.ConstrainedExecution;
 
+
+namespace service_auto_v2;
+using System;
+using System.Collections.Generic;
+using System.IO;
 public class Logare
 {
     public int opt { get; set; }
@@ -20,9 +25,9 @@ public class Logare
     
     public int optiune_admin = 0;
     public int optiune_mecanic = 0;
-    
-    public static Cerere cerere =new Cerere("1","1","1","1",Cerere.tip.in_preluare);
-    public Piese piesa =new Piese("1",temp_utilizator,Piese.tip.in_asteptare,"1",1,cerere);
+
+    public Cerere cerere ;
+    public Piese piesa ;
     
 
     public void interfata()
