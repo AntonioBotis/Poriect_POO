@@ -40,7 +40,7 @@ public class Piese
     
         
 
-    public void creare_cerere_piese(List<Piese> p1,Cerere cer1)
+    public void creare_cerere_piese(Cerere cer1)
     {
         contor_piese = contor_piese + 1;
         Console.WriteLine($"{cer1.cod_identificare} {cer1.client_nume} {cer1.client_nr_masina} {cer1.descriere} {cer1.status} ");
@@ -57,7 +57,7 @@ public class Piese
        
         status = tip.in_asteptare;
         Piese piesa1 = new Piese(awb,Logare.temp_utilizator,status,pes1 ,pre1, cer1);
-        p1.Add(piesa1);
+       
         
         salvare_piesa_in_fisier(piesa1);
         Console.WriteLine();
@@ -65,13 +65,13 @@ public class Piese
     
     private void salvare_piesa_in_fisier(Piese piesa)
     {
-        string path = "piese.txt";
+        string path = "lista_piese.txt";
         string linie = $"{piesa.awb},{piesa.nume_piesa},{piesa.pret_piesa},{piesa.status}";
         File.AppendAllText(path, linie + Environment.NewLine);
     }
     public static List<Piese> citire_piese_din_fisier()
     {
-        string path = "piese.txt";
+        string path = "lista_piese.txt";
         List<Piese> piese = new List<Piese>();
 
         if (File.Exists(path))

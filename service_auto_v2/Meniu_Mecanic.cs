@@ -19,23 +19,23 @@ public class Meniu_Mecanic
          Console.WriteLine("");
          Console.Write("optiune mecanic=");
          optiune_mecanic = Convert.ToInt32(Console.ReadLine());
-     
-     
-     
-     
+         
+         List<Cerere> cereri = Cerere.citire_cereri_din_fisier();
+            Cerere cerere_preluata_curent=cerere.preluare_cerere(cereri);
+        
          switch (optiune_mecanic)
          {
              case 0:
                  Console.WriteLine("Se iese din mecanic");
-                 Program.loga.interfata();
+                 Logare.opt = 0;
                  break;
-             case 1: cerere.preluare_cerere(Logare.lista_cerere);
+             case 1: cerere.preluare_cerere(cereri);
                  break;
-             case 2:cerere.investigare_cerere(Logare.lista_cerere);
+             case 2:cerere.investigare_cerere(cereri);
                  break;
-             case 3:piesa.creare_cerere_piese(Logare.lista_piesa,Logare.temp_cerere);
+             case 3:piesa.creare_cerere_piese(cerere_preluata_curent);
                  break;
-             case 4:cerere.rezolva_cerere(Logare.lista_cerere);
+             case 4:cerere.rezolva_cerere(cereri);
      
      
                  break;

@@ -1,3 +1,5 @@
+using System.Runtime.ConstrainedExecution;
+
 namespace service_auto_v2;
 using System;
 using System.Collections.Generic;
@@ -38,7 +40,7 @@ public class Cerere
         }
 
        
-        public void creare_cerere(List<Cerere> cerere)
+        public void creare_cerere()
         {
             contor_cerere = contor_cerere + 1;
             Console.Write("cod identificare=");
@@ -60,7 +62,7 @@ public class Cerere
             
             Cerere cerere1=new Cerere(cod_identificare, client_nume, client_nr_masina, descriere, status);
             
-            cerere.Add(cerere1);
+      
             
             salvare_cerere_in_fisier(cerere1);
            
@@ -91,7 +93,7 @@ public class Cerere
         
         public static List<Cerere> citire_cereri_din_fisier()
         {
-            string path = "cereri.txt";
+            string path = "lista_cereri.txt";
             List<Cerere> cereri = new List<Cerere>();
 
             if (File.Exists(path))
@@ -120,39 +122,31 @@ public class Cerere
             return cereri;
         }
         
-        static void CurataFisier(string filePath)
-        {
-            filePath="lista_cereri.txt";
-            if (File.Exists(filePath))
-            {
-                File.WriteAllText(filePath, ""); // Suprascrie cu un conținut gol
-                Console.WriteLine($"Fișierul {filePath} a fost golit.");
-            }
-            else
-            {
-                Console.WriteLine($"Fișierul {filePath} nu există.");
-            }
-        }
+ 
 
-        public void preluare_cerere(List<Cerere> cerere)
+        public Cerere? preluare_cerere(List<Cerere> cerere)
         {
             if (contor_cerere == 0)
             {
-                Console.WriteLine("lista este goala");
-                return;
+                Console.WriteLine("Lista este goală.");
+                return null; // Indică faptul că nu a fost găsită nicio cerere
             }
+
             foreach (var VARIABLE in cerere)
             {
                 if (VARIABLE.status == tip.in_preluare)
                 {
-                    VARIABLE.status=tip.investigare;
-                      Console.WriteLine($"{VARIABLE.cod_identificare} {VARIABLE.client_nume} {VARIABLE.client_nr_masina} {VARIABLE.descriere} {VARIABLE.status} ");
+                    VARIABLE.status = tip.investigare;
+                    Console.WriteLine($"{VARIABLE.cod_identificare} {VARIABLE.client_nume} {VARIABLE.client_nr_masina} {VARIABLE.descriere} {VARIABLE.status}");
                     Console.WriteLine("");
-                      break;
+            
+                    return VARIABLE; // Returnează cererea găsită
                 }
-                  
             }
+
+            return null; // Dacă nu a fost găsită nicio cerere cu statusul `in_preluare`
         }
+
 
         public void investigare_cerere(List<Cerere> cerere)
         {
