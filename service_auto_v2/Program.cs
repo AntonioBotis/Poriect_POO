@@ -1,4 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using service_auto_v2;
 
-Console.WriteLine("Antonio e boss");
+public class Program
+{
+   
+    public static Logare loga = new Logare();
 
+    public static void Main(string[] args)
+    {
+        
+        loga.interfata();
+    }
+}
