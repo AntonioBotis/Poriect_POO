@@ -22,13 +22,13 @@ public class GestionareCereri
         
     }
     
-    public void CurataFisierPiese()
+    public void CurataFisierCereri()
     {
         string path = "lista_cereri.txt";
         if (File.Exists(path))
         {
             File.WriteAllText(path, "");
-            Console.WriteLine("Fișierul piese.txt a fost golit.");
+            Console.WriteLine("Fișierul cereri.txt a fost golit.");
         }
         else
         {

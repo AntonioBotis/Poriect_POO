@@ -5,14 +5,26 @@ using System.IO;
 public class Meniu_Admin
 {
     public int optiune_admin = 0;
-
-    public  Piese piesa = null;
-    public Cerere cerere = null;
+    public static Utilizatori temp_util = new Utilizatori(Utilizatori.tip_de_utilizator.mecanic, "mata", "mata", "mata", "mata");
+    
+    public static Cerere cerere =new Cerere("mata","mata","mata","mata",Cerere.tip.in_preluare);
+    public Piese piesa=new Piese("a",temp_util,Piese.tip.in_asteptare,"mata",12,cerere) ;
+    
+    
     public List<Cerere> lista_cerere ;
-    public GestionareCereri gestionarecereri = null;
-    public GestionarePiese gestionarepiese = null;
+    public GestionarePiese gestionarepiese = new GestionarePiese();
+    public GestionareCereri gestionarecereri = new GestionareCereri();
+
     
     
+
+    public List<Piese> lista_piesa;
+
+    public Meniu_Admin(List<Cerere> cereri, List<Piese> piese)
+    {
+        this.lista_cerere = cereri;
+        this.lista_piesa = piese;
+    }
 
     public void meniu_admin()
     {
@@ -35,7 +47,7 @@ public class Meniu_Admin
             {
                 case 0:
                     Console.WriteLine("Se iese din admin");
-                    Logare.opt = 0;
+                    Logare.opt = 4;
                     break;
                 case 1: gestionarecereri.AfisareCereriDinFisier(); break;
                 case 2: gestionarepiese.AfisarePieseDinFisier(); break;
