@@ -1,3 +1,1 @@
-AWB1,bmw,1200,in_asteptare
-AWB2,bmw,120000,in_asteptare
-AWB3,MERCEDES,3000,in_asteptare
+AWB1,vmw,12000,in_asteptare

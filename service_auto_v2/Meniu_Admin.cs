@@ -57,7 +57,7 @@ public class Meniu_Admin
                     gestionarepiese.AfisarePieseDinFisier();
                     break;
                 case 3:
-                    lista_piesa = Piese.citire_piese_din_fisier();
+                   
                     piesa.preluare_cerere_piese(lista_piesa);
             break;
                 
