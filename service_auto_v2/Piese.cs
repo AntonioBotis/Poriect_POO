@@ -40,7 +40,7 @@ public class Piese
     
         
 
-    public void creare_cerere_piese(Cerere cer1)
+    public void creare_cerere_piese(List<Piese> piese,Cerere cer1)
     {
         contor_piese = contor_piese + 1;
         Console.WriteLine($"{cer1.cod_identificare} {cer1.client_nume} {cer1.client_nr_masina} {cer1.descriere} {cer1.status} ");
@@ -60,6 +60,7 @@ public class Piese
        
         
         salvare_piesa_in_fisier(piesa1);
+        piese.Add(piesa1);
         Console.WriteLine();
     }
     

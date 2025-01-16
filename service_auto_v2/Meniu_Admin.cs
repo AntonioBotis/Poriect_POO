@@ -11,20 +11,21 @@ public class Meniu_Admin
     public Piese piesa=new Piese("a",temp_util,Piese.tip.in_asteptare,"mata",12,cerere) ;
     
     
-    public List<Cerere> lista_cerere ;
+    public List<Cerere> lista_cerere=new List<Cerere>() ;
     public GestionarePiese gestionarepiese = new GestionarePiese();
     public GestionareCereri gestionarecereri = new GestionareCereri();
 
     
     
 
-    public List<Piese> lista_piesa;
+    public List<Piese> lista_piesa=new List<Piese>() ;
 
     public Meniu_Admin(List<Cerere> cereri, List<Piese> piese)
     {
         this.lista_cerere = cereri;
         this.lista_piesa = piese;
     }
+  
 
     public void meniu_admin()
     {
@@ -49,10 +50,10 @@ public class Meniu_Admin
                     Console.WriteLine("Se iese din admin");
                     Logare.opt = 4;
                     break;
-                case 1: gestionarecereri.AfisareCereriDinFisier(); break;
+                case 1: cerere.afisare_cerere(lista_cerere); break;
                 case 2: gestionarepiese.AfisarePieseDinFisier(); break;
                 case 3: piesa.preluare_cerere_piese(piese);break;
-                case 4: cerere.creare_cerere(); break;
+                case 4: cerere.creare_cerere(lista_cerere); break;
             }
 
         } while (optiune_admin != 0);

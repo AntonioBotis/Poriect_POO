@@ -26,11 +26,11 @@ public class GestionarePiese
         if (File.Exists(path))
         {
             File.WriteAllText(path, "");
-            Console.WriteLine("Fișierul piese.txt a fost golit.");
+            Console.WriteLine("Fisierul piese.txt a fost golit.");
         }
         else
         {
-            Console.WriteLine("Fișierul piese.txt nu există.");
+            Console.WriteLine("Fisierul lista_piese.txt nu există.");
         }
     }
 }

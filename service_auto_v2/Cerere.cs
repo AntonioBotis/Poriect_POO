@@ -40,7 +40,7 @@ public class Cerere
         }
 
        
-        public void creare_cerere()
+        public void creare_cerere(List<Cerere>cereri)
         {
             contor_cerere = contor_cerere + 1;
             Console.Write("cod identificare=");
@@ -65,7 +65,7 @@ public class Cerere
       
             
             salvare_cerere_in_fisier(cerere1);
-           
+            cereri.Add(cerere1);
 
         }
          private void salvare_cerere_in_fisier(Cerere cerere)
@@ -77,15 +77,16 @@ public class Cerere
 
         public void afisare_cerere(List<Cerere> cerere)
         {
-            if (contor_cerere == 0)
+            if(cerere.Count == 0)
+                Console.WriteLine("nu sunt elemente in lista");
+            else
             {
-                Console.WriteLine("lista este goala");
-                return ;
+                 foreach (var VARIABLE in cerere)
+                            {
+                                Console.WriteLine($"{VARIABLE.cod_identificare} {VARIABLE.client_nume} {VARIABLE.client_nr_masina} {VARIABLE.descriere} {VARIABLE.status} ");
+                            }
             }
-            foreach (var VARIABLE in cerere)
-            {
-                Console.WriteLine($"{VARIABLE.cod_identificare} {VARIABLE.client_nume} {VARIABLE.client_nr_masina} {VARIABLE.descriere} {VARIABLE.status} ");
-            }
+           
 
                 Console.WriteLine("");
             
@@ -126,11 +127,7 @@ public class Cerere
 
         public Cerere? preluare_cerere(List<Cerere> cerere)
         {
-            if (contor_cerere == 0)
-            {
-                Console.WriteLine("Lista este goală.");
-                return null; // Indică faptul că nu a fost găsită nicio cerere
-            }
+           
 
             foreach (var VARIABLE in cerere)
             {
@@ -148,16 +145,11 @@ public class Cerere
         }
 
 
-        public void investigare_cerere(List<Cerere> cerere)
+        public void investigare_cerere(Cerere cerere)
         {
-            if (contor_cerere == 0)
-            {
-                Console.WriteLine("lista este goala");
-                return;
-            }
-            foreach (var VARIABLE in cerere)
-            {
-                if (VARIABLE.status == tip.investigare)
+         
+            
+                if (cerere.status == tip.investigare)
                 {
                     Console.Write("trebuie piese pentru a finaliza?   (scrieti da sau nu)=");
                     Console.WriteLine("");
@@ -166,36 +158,36 @@ public class Cerere
                     {
                         Console.WriteLine("rezolva problema");
                         Console.WriteLine("");
-                        Logare.temp_cerere = VARIABLE;
+                    
                     }
                     else if (temp == "da")
                     {
                         Console.WriteLine("fa comanda");
                         Console.WriteLine("");
-                        VARIABLE.status = tip.astepare_piese;
-                         Logare.temp_cerere = VARIABLE;
+                       cerere.status = tip.astepare_piese;
+                     
 
                     }
                     
                 }
-            }
+            
         }
 
-        public void rezolva_cerere(List<Cerere>cer1)
+        public void rezolva_cerere(Cerere cer1)
         {
         
-            foreach (var VARIABLE in cer1)
-            {
+          
+            
                     
-                if (VARIABLE.status == tip.investigare)
+                if (cer1.status == tip.investigare)
                 {
-                    VARIABLE.status = tip.finalizat;
-                    Console.WriteLine($"{VARIABLE.cod_identificare} {VARIABLE.client_nume} {VARIABLE.client_nr_masina} {VARIABLE.descriere} {VARIABLE.status} ");
+                   cer1.status = tip.finalizat;
+                    Console.WriteLine($"{cer1.cod_identificare} {cer1.client_nume} {cer1.client_nr_masina} {cer1.descriere} {cer1.status} ");
                     Console.WriteLine("comanda finalizata");
                     Console.WriteLine("");
                 }
 
-            }
+            
         }
 
 

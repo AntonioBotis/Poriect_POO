@@ -39,6 +39,8 @@ public class Logare
 
     public void interfata()
     {
+        gestionarecereri.CurataFisierCereri();
+        gestionarepiese.CurataFisierPiese();
         do
         {
             Console.WriteLine("0. Iesire");
@@ -48,8 +50,24 @@ public class Logare
             if (counter_admin < 1 || counter_mecanic < 2)
                 Console.WriteLine("Minim 1 admin si 2 mecanici sunt necesari.");
             Console.WriteLine("");
-            Console.Write("Optiune: ");
-            opt = Convert.ToInt32(Console.ReadLine());
+           
+            
+            
+            do
+            {
+                 Console.Write("Optiune: ");
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out int rezultat)) // Folosim o variabilă locală 'rezultat'
+                {
+                    opt = rezultat; // Atribuim valoarea proprietății statice
+                    break; // Valoare validă
+                }
+                else
+                {
+                    Console.WriteLine("Te rog să introduci un număr valid.");
+                }
+            } while (true);
             
 
             switch (opt)
