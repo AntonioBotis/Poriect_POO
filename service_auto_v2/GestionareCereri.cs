@@ -35,4 +35,31 @@ public class GestionareCereri
             Console.WriteLine("Fișierul piese.txt nu există.");
         }
     }
+    
+    public static void StergereComandaDinFisier(string codComanda)
+    {
+        string path = "lista_cereri.txt";
+        List<string> comenzi = new List<string>();
+
+        // Citește toate liniile din fișier
+        if (File.Exists(path))
+        {
+            comenzi.AddRange(File.ReadAllLines(path));
+        }
+
+        // Elimină comanda cu codul specificat
+        comenzi = comenzi.Where(linie => !linie.StartsWith(codComanda + ",")).ToList();
+
+        // Rescrie fișierul cu comenzile rămase
+        try
+        {
+            File.WriteAllLines(path, comenzi);
+            Console.WriteLine($"Comanda cu codul {codComanda} a fost ștearsă.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Eroare la ștergerea comenzii: {ex.Message}");
+        }
+    }
+
 }

@@ -1,1 +1,1 @@
-aaaaa,bmw,120,in_asteptare
+a,bmw,1200,in_asteptare

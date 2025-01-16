@@ -125,13 +125,13 @@ public class Cerere
         
  
 
-        public Cerere? preluare_cerere(List<Cerere> cerere)
+        public Cerere preluare_cerere(List<Cerere> cerere)
         {
            
 
             foreach (var VARIABLE in cerere)
             {
-                if (VARIABLE.status == tip.in_preluare && VARIABLE.status != tip.investigare)
+                if (VARIABLE.status == tip.in_preluare)
                 {
                     VARIABLE.status = tip.investigare;
                     Console.WriteLine($"{VARIABLE.cod_identificare} {VARIABLE.client_nume} {VARIABLE.client_nr_masina} {VARIABLE.descriere} {VARIABLE.status}");
@@ -183,7 +183,7 @@ public class Cerere
             }
             
                     
-                if (cer1.status == tip.investigare)
+               else  
                 {
                    cer1.status = tip.finalizat;
                     Console.WriteLine($"{cer1.cod_identificare} {cer1.client_nume} {cer1.client_nr_masina} {cer1.descriere} {cer1.status} ");

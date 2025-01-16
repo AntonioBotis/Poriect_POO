@@ -33,4 +33,30 @@ public class GestionarePiese
             Console.WriteLine("Fisierul lista_piese.txt nu există.");
         }
     }
+    
+    public static void StergerePiesaDinFisier(string awbPiesa)
+    {
+        string path = "lista_piese.txt";
+        List<string> piese = new List<string>();
+
+        // Citește toate liniile din fișier
+        if (File.Exists(path))
+        {
+            piese.AddRange(File.ReadAllLines(path));
+        }
+
+        // Elimină piesa cu AWB-ul specificat
+        piese = piese.Where(linie => !linie.StartsWith(awbPiesa + ",")).ToList();
+
+        // Rescrie fișierul cu piesele rămase
+        try
+        {
+            File.WriteAllLines(path, piese);
+            Console.WriteLine($"Piesa cu AWB-ul {awbPiesa} a fost ștearsă.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Eroare la ștergerea piesei: {ex.Message}");
+        }
+    }
 }

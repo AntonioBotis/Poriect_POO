@@ -24,6 +24,7 @@ public class Piese
     public List<Piese> lista_piese { get; set; }
 
     public int contor_piese = 0;
+    public Cerere cere;
   
   
 
@@ -35,7 +36,7 @@ public class Piese
         status = Status;
         pret_piesa = pret;
         nume_piesa = nume;
-        Logare.temp_cerere = cer1;
+        cere = cer1;
 
     }
 
@@ -128,7 +129,7 @@ public class Piese
         }
     }
 
-    public static List<Cerere> preluare_cerere_piese (List<Piese> lista_piese)
+    public void preluare_cerere_piese (List<Piese> lista_piese)
     {
         
     
@@ -140,11 +141,15 @@ public class Piese
                         if (VARIABLE.status == Piese.tip.in_asteptare)
                         {
                             bool error=false;
+                            
                             do
                             { Console.WriteLine("cumparam piesa (da sau nu)?");
                                                          string cumparam = Console.ReadLine();
                                                          if(cumparam == "da")
-                                                         {VARIABLE.status = Piese.tip.finalizat;error = true;}
+                                                         {VARIABLE.status = Piese.tip.finalizat;
+                                                             Logare.temp_piesa.awb = VARIABLE.awb;
+                                                             Logare.temp_cerere.status = Cerere.tip.finalizat;
+                                                                 error = true;}
                                                          else if(cumparam == "nu")
                                                          {
                                                              VARIABLE.status = Piese.tip.in_asteptare;
@@ -162,7 +167,7 @@ public class Piese
                         }
                     }
 
-                    return lista_piese;
+                  
         }
        
         Console.WriteLine("");

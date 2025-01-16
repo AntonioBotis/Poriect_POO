@@ -50,6 +50,7 @@ public class Meniu_Mecanic
                     if (lista_cerere.Count > 0)
                     {
                         cerere = cerere.preluare_cerere(lista_cerere);
+                        Logare.temp_cerere = cerere;
                     }
                     else
                     {
@@ -63,7 +64,10 @@ public class Meniu_Mecanic
                     piesa.creare_cerere_piese(lista_piesa, cerere);
                     break;
                 case 4:
-                    cerere.rezolva_cerere(cerere);
+                    
+                    cerere.rezolva_cerere(Logare.temp_cerere);
+                    GestionareCereri.StergereComandaDinFisier(Logare.temp_cerere.cod_identificare);
+                    GestionarePiese.StergerePiesaDinFisier(Logare.temp_piesa.awb);
                     break;
                 
                 default:

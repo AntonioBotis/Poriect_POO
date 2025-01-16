@@ -21,7 +21,7 @@ public class Logare
     public static List<Cerere> lista_cerere = new List<Cerere>();
     public static List<Piese> lista_piesa = new List<Piese>();
     public static Cerere temp_cerere = null;
-
+    public static Piese temp_piesa = null;
     public Cerere cerere;
     public Piese piesa;
     public Meniu_Admin ma;
