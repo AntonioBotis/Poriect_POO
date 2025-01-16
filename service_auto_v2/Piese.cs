@@ -33,6 +33,8 @@ public class Piese
         awb = Awb;
         utli = Utli;
         status = Status;
+        pret_piesa = pret;
+        nume_piesa = nume;
         Logare.temp_cerere = cer1;
 
     }
@@ -61,7 +63,8 @@ public class Piese
         
         salvare_piesa_in_fisier(piesa1);
         piese.Add(piesa1);
-        Console.WriteLine();
+        Console.WriteLine("");
+        Console.WriteLine($"{piesa1.nume_piese} {piesa1.status} {piesa1.pret_piesa}");
     }
     
     private void salvare_piesa_in_fisier(Piese piesa)
@@ -92,48 +95,23 @@ public class Piese
                             null,     // utilizatori (nu e salvat în fișier)
                             Enum.Parse<tip>(parts[3]), // status
                             parts[1], // nume_piesa
-                            int.Parse(parts[2]), // pret_piesa
-                            null      // cerere (nu e salvat în fișier)
+                            int.Parse(parts[2]) ,// pret_piesa
+                            null
                         );
 
                         piese.Add(p);
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Eroare la procesarea liniei: {line}. Detalii: {ex.Message}");
+                        Console.WriteLine($"Eroare la citirea piesei: {ex.Message}");
                     }
                 }
-                else
-                {
-                    Console.WriteLine($"Linie invalidă (nu are 4 câmpuri): {line}");
-                }
             }
-        }
-        else
-        {
-            Console.WriteLine($"Fișierul {path} nu există.");
         }
 
         return piese;
     }
-
     
-    public void vizualizare_cerere_piese_din_fisier(List<Piese> piese)
-    {
-  
-
-        if (piese.Count == 0)
-        {
-            Console.WriteLine("Nu există cereri de piese salvate.");
-            return;
-        }
-
-        Console.WriteLine("Cereri de piese salvate:");
-        foreach (var piesa in piese)
-        {
-            Console.WriteLine($"{piesa.awb} {piesa.nume_piesa} {piesa.pret_piesa} {piesa.status}");
-        }
-    }
     
     public void vizualizare_cerere_piese(List<Piese> lista_piese)
     {
@@ -150,7 +128,7 @@ public class Piese
         }
     }
 
-    public void preluare_cerere_piese(List<Piese> lista_piese)
+    public static List<Cerere> preluare_cerere_piese (List<Piese> lista_piese)
     {
         
     
@@ -183,8 +161,32 @@ public class Piese
                             
                         }
                     }
+
+                    return lista_piese;
         }
        
         Console.WriteLine("");
+    }
+    
+    public static void scriere_piese_in_fisier(List<Piese> piese)
+    {
+        string path = "lista_piese.txt";
+
+        try
+        {
+            using (StreamWriter writer = new StreamWriter(path, false))
+            {
+                foreach (var piesa in piese)
+                {
+                    writer.WriteLine($"{piesa.awb},{piesa.nume_piesa},{piesa.pret_piesa},{piesa.status}");
+                }
+            }
+
+            Console.WriteLine("Piesele au fost salvate cu succes în fișier.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Eroare la scrierea pieselor: {ex.Message}");
+        }
     }
 }

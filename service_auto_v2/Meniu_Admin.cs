@@ -58,8 +58,10 @@ public class Meniu_Admin
                     break;
                 case 3:
                     lista_piesa = Piese.citire_piese_din_fisier();
-            piesa.preluare_cerere_piese(lista_piesa);break;
-                case 4: cerere.creare_cerere(lista_cerere); break;
+            Piese.preluare_cerere_piese(lista_piesa);break;
+                
+                case 4: lista_cerere=Piese.preluare_cerere_piese(lista_piesa);
+                    cerere.creare_cerere(lista_cerere); break;
             }
 
         } while (optiune_admin != 0);

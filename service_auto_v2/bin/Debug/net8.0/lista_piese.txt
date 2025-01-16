@@ -1,2 +1,1 @@
-mata,,0,in_asteptare
-aaab,,0,in_asteptare
+aaaaa,bmw,120,in_asteptare

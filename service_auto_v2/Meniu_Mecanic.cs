@@ -43,6 +43,7 @@ public class Meniu_Mecanic
             switch (optiune_mecanic)
             {
                 case 0:
+                    Piese.scriere_piese_in_fisier(lista_piesa);
                     Console.WriteLine("Se iese din mecanic.");
                     break;
                 case 1:
