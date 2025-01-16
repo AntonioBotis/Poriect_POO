@@ -28,7 +28,7 @@ public class GestionareCereri
         if (File.Exists(path))
         {
             File.WriteAllText(path, "");
-            Console.WriteLine("Fisierul cereri.txt a fost golit.");
+            Console.WriteLine("Fisierul lista_cereri.txt a fost golit.");
         }
         else
         {

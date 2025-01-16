@@ -19,7 +19,7 @@ public class Meniu_Mecanic
         this.lista_cerere = Cerere.citire_cereri_din_fisier();
         this.lista_piesa = new List<Piese>(); // Inițializare pentru lista pieselor
     }
-
+    
     GestionarePiese gestionarepiese = new GestionarePiese();
     GestionareCereri gestionarecereri = new GestionareCereri();
 
@@ -33,10 +33,13 @@ public class Meniu_Mecanic
             Console.WriteLine("2.Investigare problema cerere");
             Console.WriteLine("3.Creare cerere de piese auto");
             Console.WriteLine("4.Rezolvare problema");
-            Console.WriteLine("5.Reincarcare lista de cereri din fisier");
+          
             Console.Write("Optiune mecanic: ");
+            Console.WriteLine("");
             optiune_mecanic = Convert.ToInt32(Console.ReadLine());
-
+            Console.Write("");
+            
+            lista_cerere = Cerere.citire_cereri_din_fisier();
             switch (optiune_mecanic)
             {
                 case 0:

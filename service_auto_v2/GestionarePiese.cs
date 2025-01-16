@@ -26,7 +26,7 @@ public class GestionarePiese
         if (File.Exists(path))
         {
             File.WriteAllText(path, "");
-            Console.WriteLine("Fisierul piese.txt a fost golit.");
+            Console.WriteLine("Fisierul lista_piese.txt a fost golit.");
         }
         else
         {

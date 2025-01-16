@@ -23,7 +23,7 @@ public class Meniu_Admin
     public Meniu_Admin(List<Cerere> cereri, List<Piese> piese)
     {
         this.lista_cerere = cereri;
-        this.lista_piesa = piese;
+        this.lista_piesa = Piese.citire_piese_din_fisier();
     }
   
 
@@ -42,7 +42,7 @@ public class Meniu_Admin
             Console.Write("optiune admin=");
             optiune_admin = Convert.ToInt32(Console.ReadLine());
 
-            List<Piese> piese = Piese.citire_piese_din_fisier();
+            
 
             switch (optiune_admin)
             {
@@ -50,9 +50,15 @@ public class Meniu_Admin
                     Console.WriteLine("Se iese din admin");
                     Logare.opt = 4;
                     break;
-                case 1: cerere.afisare_cerere(lista_cerere); break;
-                case 2: gestionarepiese.AfisarePieseDinFisier(); break;
-                case 3: piesa.preluare_cerere_piese(piese);break;
+                case 1:
+                    cerere.afisare_cerere(lista_cerere);
+                    break;
+                case 2:
+                    gestionarepiese.AfisarePieseDinFisier();
+                    break;
+                case 3:
+                    lista_piesa = Piese.citire_piese_din_fisier();
+            piesa.preluare_cerere_piese(lista_piesa);break;
                 case 4: cerere.creare_cerere(lista_cerere); break;
             }
 

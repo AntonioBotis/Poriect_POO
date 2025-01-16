@@ -131,7 +131,7 @@ public class Cerere
 
             foreach (var VARIABLE in cerere)
             {
-                if (VARIABLE.status == tip.in_preluare)
+                if (VARIABLE.status == tip.in_preluare && VARIABLE.status != tip.investigare)
                 {
                     VARIABLE.status = tip.investigare;
                     Console.WriteLine($"{VARIABLE.cod_identificare} {VARIABLE.client_nume} {VARIABLE.client_nr_masina} {VARIABLE.descriere} {VARIABLE.status}");
@@ -175,8 +175,12 @@ public class Cerere
 
         public void rezolva_cerere(Cerere cer1)
         {
-        
-          
+
+            if (cer1.status == tip.astepare_piese)
+            {
+                Console.WriteLine("piesele nu au venit , nu se poate rezolva problema");
+                return ;
+            }
             
                     
                 if (cer1.status == tip.investigare)

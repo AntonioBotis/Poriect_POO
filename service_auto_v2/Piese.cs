@@ -85,26 +85,42 @@ public class Piese
 
                 if (parts.Length == 4)
                 {
-                    Piese p = new Piese(
-                        parts[0], // awb
-                        null,     // utilizatori (nu e salvat în fișier)
-                        Enum.Parse<tip>(parts[3]), // status
-                        parts[1], // nume_piesa
-                        int.Parse(parts[2]), // pret_piesa
-                        null      // cerere (nu e salvat în fișier)
-                    );
+                    try
+                    {
+                        Piese p = new Piese(
+                            parts[0], // awb
+                            null,     // utilizatori (nu e salvat în fișier)
+                            Enum.Parse<tip>(parts[3]), // status
+                            parts[1], // nume_piesa
+                            int.Parse(parts[2]), // pret_piesa
+                            null      // cerere (nu e salvat în fișier)
+                        );
 
-                    piese.Add(p);
+                        piese.Add(p);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Eroare la procesarea liniei: {line}. Detalii: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Linie invalidă (nu are 4 câmpuri): {line}");
                 }
             }
+        }
+        else
+        {
+            Console.WriteLine($"Fișierul {path} nu există.");
         }
 
         return piese;
     }
+
     
-    public void vizualizare_cerere_piese_din_fisier()
+    public void vizualizare_cerere_piese_din_fisier(List<Piese> piese)
     {
-        List<Piese> piese = citire_piese_din_fisier();
+  
 
         if (piese.Count == 0)
         {
