@@ -54,7 +54,7 @@ public class GestionareCereri
         try
         {
             File.WriteAllLines(path, comenzi);
-            Console.WriteLine($"Comanda cu codul {codComanda} a fost ștearsă.");
+            Console.WriteLine($"Comanda cu codul {codComanda} a fost stearsă.");
         }
         catch (Exception ex)
         {

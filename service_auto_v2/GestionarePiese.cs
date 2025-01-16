@@ -45,6 +45,15 @@ public class GestionarePiese
             piese.AddRange(File.ReadAllLines(path));
         }
 
+        // Verifică dacă piesa există înainte de ștergere
+        bool piesaExista = piese.Any(linie => linie.StartsWith(awbPiesa + ","));
+
+        if (!piesaExista)
+        {
+            Console.WriteLine($"Piesa cu AWB-ul {awbPiesa} nu a fost găsită în fisier.");
+            return;
+        }
+
         // Elimină piesa cu AWB-ul specificat
         piese = piese.Where(linie => !linie.StartsWith(awbPiesa + ",")).ToList();
 
@@ -52,11 +61,12 @@ public class GestionarePiese
         try
         {
             File.WriteAllLines(path, piese);
-            Console.WriteLine($"Piesa cu AWB-ul {awbPiesa} a fost ștearsă.");
+            Console.WriteLine($"Piesa cu AWB-ul {awbPiesa} a fost stearsă.");
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Eroare la ștergerea piesei: {ex.Message}");
         }
     }
+
 }

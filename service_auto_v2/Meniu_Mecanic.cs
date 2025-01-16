@@ -67,7 +67,8 @@ public class Meniu_Mecanic
                     
                     cerere.rezolva_cerere(Logare.temp_cerere);
                     GestionareCereri.StergereComandaDinFisier(Logare.temp_cerere.cod_identificare);
-                    GestionarePiese.StergerePiesaDinFisier(Logare.temp_piesa.awb);
+                    GestionarePiese.StergerePiesaDinFisier(Logare.temp_awb);
+                    gestionarepiese.AfisarePieseDinFisier();
                     break;
                 
                 default:

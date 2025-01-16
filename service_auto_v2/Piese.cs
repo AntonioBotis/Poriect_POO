@@ -147,7 +147,8 @@ public class Piese
                                                          string cumparam = Console.ReadLine();
                                                          if(cumparam == "da")
                                                          {VARIABLE.status = Piese.tip.finalizat;
-                                                             Logare.temp_piesa.awb = VARIABLE.awb;
+                                                             Logare.temp_awb= VARIABLE.awb;
+                                                             Console.WriteLine(Logare.temp_awb);
                                                              Logare.temp_cerere.status = Cerere.tip.finalizat;
                                                                  error = true;}
                                                          else if(cumparam == "nu")

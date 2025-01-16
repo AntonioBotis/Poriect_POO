@@ -1,3 +1,1 @@
 a,a,a,a,in_preluare
-b,b,b,b,in_preluare
-c,c,c,c,in_preluare
