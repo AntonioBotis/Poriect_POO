@@ -51,7 +51,8 @@ public class Meniu_Admin
                     Logare.opt = 4;
                     break;
                 case 1:
-                    cerere.afisare_cerere(lista_cerere);
+                    //cerere.afisare_cerere(lista_cerere);
+                    gestionarecereri.AfisareCereriDinFisier();
                     break;
                 case 2:
                     gestionarepiese.AfisarePieseDinFisier();

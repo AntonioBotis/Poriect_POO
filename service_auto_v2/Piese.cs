@@ -150,7 +150,9 @@ public class Piese
                                                              Logare.temp_awb= VARIABLE.awb;
                                                              Console.WriteLine(Logare.temp_awb);
                                                              Logare.temp_cerere.status = Cerere.tip.finalizat;
-                                                                 error = true;}
+                                                                 error = true;
+                                                                 
+                                                         }
                                                          else if(cumparam == "nu")
                                                          {
                                                              VARIABLE.status = Piese.tip.in_asteptare;
